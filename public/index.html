@@ -24,7 +24,20 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Smart Digital Workspace</title>
+    <script>
+      // Prevent theme flashing by setting theme before React loads
+      (function () {
+        const savedTheme = localStorage.getItem("workspace-theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        document.documentElement.classList.add("no-transition");
+
+        // Remove no-transition class after a brief delay
+        setTimeout(() => {
+          document.documentElement.classList.remove("no-transition");
+        }, 100);
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
