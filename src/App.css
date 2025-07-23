@@ -2114,16 +2114,23 @@ body {
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+  /* Base mobile layout */
+  .app {
+    overflow-x: hidden;
+  }
+
+  /* Sidebar mobile behavior */
   .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    width: 100vw;
+    width: 75vw;
     max-width: 300px;
     height: 100vh;
     z-index: 1000;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    overflow-y: auto;
   }
 
   .sidebar.mobile-open {
@@ -2136,7 +2143,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     opacity: 0;
     visibility: hidden;
@@ -2148,28 +2155,32 @@ body {
     visibility: visible;
   }
 
+  /* Main content adjustments */
   .main-content {
     margin-left: 0;
-    width: 100%;
+    width: 100vw;
+    min-height: 100vh;
   }
 
   .content-area {
-    margin: 0.5rem;
-    border-radius: 0.75rem;
+    margin: 0;
+    border-radius: 0;
+    min-height: calc(100vh - 80px);
   }
 
+  /* Mobile menu button */
   .mobile-menu-btn {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 1.25rem;
     cursor: pointer;
-    border-radius: 0.375rem;
+    border-radius: 8px;
     transition: all 0.2s ease;
   }
 
@@ -2181,19 +2192,19 @@ body {
   .mobile-close-btn {
     display: block !important;
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: 15px;
+    right: 15px;
     background: var(--danger-color);
     border: none;
-    font-size: 1rem;
+    font-size: 18px;
     color: white;
     cursor: pointer;
-    padding: 0.375rem;
+    padding: 8px;
     border-radius: 50%;
     transition: all 0.2s ease;
     z-index: 1001;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -2201,22 +2212,27 @@ body {
 
   .mobile-close-btn:hover {
     background: #dc2626;
-    transform: scale(1.05);
   }
 
+  /* Header mobile layout */
   .enhanced-header {
-    padding: 0.75rem 1rem;
-    margin: 0.5rem 0.5rem 0 0.5rem;
-    border-radius: 0.75rem 0.75rem 0 0;
+    padding: 15px 20px;
+    margin: 0;
+    border-radius: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
   }
 
   .header-left {
-    gap: 0.75rem;
+    gap: 12px;
+    flex-shrink: 0;
   }
 
   .header-left h1 {
-    font-size: 1rem;
-    display: none; /* Hide title on very small screens */
+    font-size: 18px;
+    white-space: nowrap;
   }
 
   .datetime-widget {
@@ -2224,32 +2240,34 @@ body {
   }
 
   .header-center {
-    margin: 0 0.5rem;
-    max-width: 200px;
+    margin: 0 15px;
     flex: 1;
+    min-width: 0;
   }
 
   .search-input {
     width: 100%;
-    padding: 0.5rem 0.75rem 0.5rem 2rem;
-    font-size: 14px;
-    border-radius: 1.5rem;
+    padding: 12px 15px 12px 40px;
+    font-size: 16px;
+    border-radius: 25px;
   }
 
   .search-icon {
-    left: 0.75rem;
-    font-size: 0.875rem;
+    left: 15px;
+    font-size: 14px;
   }
 
   .header-right {
-    gap: 0.5rem;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   .theme-toggle,
   .notifications-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    border-radius: 8px;
   }
 
   .user-name {
@@ -2257,13 +2275,274 @@ body {
   }
 
   .user-avatar {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Dashboard mobile layout */
+  .dashboard {
+    padding: 20px 15px;
   }
 
   .dashboard-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 20px;
+  }
+
+  /* Ensure dashboard sidebar (upcoming events) is visible on mobile */
+  .dashboard-sidebar {
+    order: -1; /* Show upcoming events at the top on mobile */
+  }
+
+  .dashboard-main {
+    order: 1;
+  }
+
+  /* Analytics mobile layout */
+  .analytics-page {
+    padding: 20px 15px;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .analytics-card {
+    padding: 20px;
+  }
+
+  .chart-container {
+    height: 200px;
+  }
+
+  /* Files mobile layout */
+  .files-section {
+    padding: 20px 15px;
+    margin: 0;
+  }
+
+  .files-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .file-card {
+    padding: 20px;
+  }
+
+  .file-preview {
+    height: 120px;
+  }
+
+  /* Tasks mobile layout */
+  .enhanced-tasks-page {
+    padding: 20px 15px;
+  }
+
+  .task-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 20px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card h3 {
+    font-size: 24px;
+  }
+
+  .enhanced-task-card {
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .task-actions {
+    position: static;
+    opacity: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .tasks-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  /* Calendar mobile layout */
+  .calendar-page {
+    padding: 20px 15px;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .calendar-nav {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .calendar-nav h3 {
+    font-size: 18px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .calendar-nav button {
+    padding: 10px;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .calendar-grid {
+    gap: 1px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .day-header {
+    padding: 12px 8px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .calendar-day {
+    min-height: 70px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .day-number {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .meeting-indicator {
+    font-size: 11px;
+    padding: 2px 6px;
+    margin-top: 4px;
+    border-radius: 4px;
+  }
+
+  .attend-btn {
+    font-size: 11px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+  }
+
+  /* Dropdown mobile adjustments */
+  .notifications-dropdown,
+  .profile-dropdown {
+    position: fixed;
+    top: 70px;
+    left: 15px;
+    right: 15px;
+    width: auto;
+    max-width: none;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    transform: none;
+    border-radius: 12px;
+  }
+
+  .notification-item {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  /* Ensure proper touch targets */
+  button,
+  .nav-item,
+  .file-item,
+  .tab {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* Prevent horizontal scroll */
+  body,
+  .app,
+  .main-content,
+  .content-area {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+}
+
+/* Small Mobile Responsive Styles */
+@media (max-width: 480px) {
+  .enhanced-header {
+    padding: 0.75rem;
+  }
+
+  .header-left h1 {
+    display: none;
+  }
+
+  .header-center {
+    margin: 0 0.5rem;
+    min-width: 0;
+  }
+
+  .search-input {
+    padding: 0.625rem 0.875rem 0.625rem 2.25rem;
+    font-size: 16px;
+  }
+
+  .search-icon {
+    left: 0.875rem;
+  }
+
+  .mobile-menu-btn,
+  .theme-toggle,
+  .notifications-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .sidebar {
+    width: 90vw;
+    max-width: 320px;
   }
 
   .dashboard {
@@ -2272,312 +2551,102 @@ body {
 
   .files-section {
     padding: 1rem;
-    margin: 0;
   }
 
   .files-section h2,
   .files-section h3 {
     font-size: 1.125rem;
-    margin-bottom: 1rem;
-  }
-
-  .tabs {
-    gap: 0.25rem;
-    padding: 0.25rem;
-    margin-bottom: 1rem;
   }
 
   .tab {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  .files-list {
-    margin-bottom: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .file-item {
-    padding: 0.75rem 0;
-    margin: 0 -0.25rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-  }
-
-  .file-icon {
-    font-size: 1.25rem;
-    margin-right: 0.75rem;
+    padding: 0.875rem 0;
   }
 
   .file-info h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0.125rem;
-  }
-
-  .file-info p {
-    font-size: 0.75rem;
-  }
-
-  .section-header {
-    margin-bottom: 1rem;
-  }
-
-  .section-header h3 {
-    font-size: 1.125rem;
-  }
-
-  .analytics-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    font-size: 0.9375rem;
   }
 
   .analytics-card {
     padding: 1rem;
   }
 
-  .analytics-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
+  .chart-container {
+    height: 180px;
   }
 
-  .chart-container {
-    height: 200px;
+  .pie-chart {
+    width: 100px;
+    height: 100px;
   }
 
   .task-stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }
 
   .stat-card {
-    padding: 0.75rem;
-    text-align: center;
-    flex-direction: column;
-    gap: 0.25rem;
+    padding: 0.875rem;
   }
 
   .stat-card h3 {
     font-size: 1.25rem;
   }
 
-  .stat-content p {
-    font-size: 0.7rem;
-  }
-
   .enhanced-task-card {
-    padding: 0.875rem;
-  }
-
-  .task-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .task-title {
-    font-size: 0.9rem;
-  }
-
-  .task-actions {
-    position: static;
-    opacity: 1;
-    margin-top: 0.5rem;
-  }
-
-  .notifications-dropdown,
-  .profile-dropdown {
-    width: calc(100vw - 1rem);
-    left: 0.5rem !important;
-    right: 0.5rem !important;
-    max-height: 70vh;
-    overflow-y: auto;
-  }
-
-  .notification-item {
-    padding: 0.75rem;
-    font-size: 0.875rem;
-  }
-
-  .enhanced-tasks-page,
-  .analytics-page,
-  .files-page,
-  .calendar-page {
-    padding: 0.75rem;
-  }
-
-  .calendar-header {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: stretch;
-  }
-
-  .calendar-nav {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .calendar-nav h3 {
-    min-width: auto;
-    font-size: 1rem;
-  }
-
-  .calendar-grid {
-    gap: 1px;
+    padding: 1rem;
   }
 
   .calendar-day {
-    min-height: 50px;
-    padding: 0.375rem 0.25rem;
-    font-size: 0.8rem;
+    min-height: 70px;
+    padding: 0.375rem;
   }
 
   .day-number {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .meeting-indicator {
-    font-size: 0.7rem;
-    padding: 0.125rem 0.25rem;
-    margin-top: 0.25rem;
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.375rem;
   }
 
   .attend-btn {
-    font-size: 0.7rem;
-    padding: 0.125rem 0.375rem;
-  }
-
-  .day-header {
-    padding: 0.5rem 0.375rem;
-    font-size: 0.8rem;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .tasks-controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-
-  .form-input {
-    font-size: 16px; /* Prevents zoom on iOS */
-    padding: 0.625rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.8rem;
-  }
-
-  .sidebar-header {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .sidebar-header h2 {
-    font-size: 1.25rem;
-  }
-
-  .nav-item {
-    padding: 0.625rem 0.875rem;
-    font-size: 0.875rem;
-    margin-bottom: 0.375rem;
-  }
-
-  .nav-icon {
-    font-size: 1.1rem;
-    margin-right: 0.625rem;
-  }
-
-  /* Better mobile typography */
-  body {
-    font-size: 14px;
-  }
-
-  /* Improve touch targets */
-  button,
-  .nav-item,
-  .file-item,
-  .tab {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-
-  /* Hide non-essential elements on mobile */
-  .file-actions {
-    opacity: 1;
-  }
-
-  .task-meta {
-    flex-wrap: wrap;
-    gap: 0.375rem;
-  }
-
-  .priority-badge,
-  .due-date {
-    font-size: 0.7rem;
-    padding: 0.125rem 0.375rem;
-  }
-
-  /* Better mobile spacing */
-  .files-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .file-card {
-    padding: 0.875rem;
-  }
-
-  .file-preview {
-    height: 100px;
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
   }
 }
 
-/* Small Mobile Responsive Styles */
-@media (max-width: 480px) {
-  .content-area {
-    margin: 0.25rem;
-    border-radius: 0.5rem;
-  }
-
+/* Ultra Small Mobile Responsive Styles */
+@media (max-width: 360px) {
   .enhanced-header {
-    padding: 0.5rem 0.75rem;
-    margin: 0.25rem 0.25rem 0 0.25rem;
-    border-radius: 0.5rem 0.5rem 0 0;
-  }
-
-  .header-left h1 {
-    display: none;
+    padding: 0.5rem;
   }
 
   .header-center {
     margin: 0 0.25rem;
-    max-width: 160px;
   }
 
   .search-input {
-    padding: 0.375rem 0.5rem 0.375rem 1.75rem;
-    font-size: 13px;
-    border-radius: 1rem;
+    padding: 0.5rem 0.75rem 0.5rem 2rem;
+    font-size: 16px;
   }
 
   .search-icon {
-    left: 0.5rem;
-    font-size: 0.8rem;
+    left: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .mobile-menu-btn,
   .theme-toggle,
   .notifications-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
+    width: 32px;
+    height: 32px;
+    font-size: 0.9375rem;
   }
 
   .user-avatar {
@@ -2586,12 +2655,7 @@ body {
   }
 
   .sidebar {
-    max-width: 280px;
-  }
-
-  .sidebar-header {
-    padding: 0 1rem 1rem 1rem;
-    margin-bottom: 1rem;
+    width: 95vw;
   }
 
   .sidebar-header h2 {
@@ -2600,8 +2664,7 @@ body {
 
   .nav-item {
     padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.8125rem;
   }
 
   .nav-icon {
@@ -2609,150 +2672,89 @@ body {
     margin-right: 0.5rem;
   }
 
-  .dashboard {
-    padding: 0.5rem;
-  }
-
-  .files-section {
+  .dashboard,
+  .files-section,
+  .analytics-page,
+  .enhanced-tasks-page,
+  .calendar-page {
     padding: 0.75rem;
   }
 
   .files-section h2,
   .files-section h3 {
     font-size: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .tabs {
-    padding: 0.125rem;
-    gap: 0.125rem;
   }
 
   .tab {
-    padding: 0.25rem 0.5rem;
+    padding: 0.375rem 0.625rem;
     font-size: 0.75rem;
-    border-radius: 0.25rem;
-  }
-
-  .file-item {
-    padding: 0.5rem 0;
-  }
-
-  .file-icon {
-    font-size: 1.125rem;
-    margin-right: 0.5rem;
-  }
-
-  .file-info h4 {
-    font-size: 0.8rem;
-  }
-
-  .file-info p {
-    font-size: 0.7rem;
-  }
-
-  .section-header h3 {
-    font-size: 1rem;
   }
 
   .analytics-card {
-    padding: 0.75rem;
+    padding: 0.875rem;
   }
 
   .analytics-card h3 {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.9375rem;
   }
 
   .chart-container {
     height: 160px;
   }
 
+  .pie-chart {
+    width: 90px;
+    height: 90px;
+  }
+
   .task-stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
   }
 
   .stat-card {
-    padding: 0.5rem;
-    gap: 0.125rem;
+    padding: 0.75rem;
   }
 
   .stat-card h3 {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 
   .stat-content p {
-    font-size: 0.65rem;
+    font-size: 0.6875rem;
   }
 
   .enhanced-task-card {
-    padding: 0.625rem;
+    padding: 0.875rem;
   }
 
   .task-title {
-    font-size: 0.8rem;
-  }
-
-  .priority-badge,
-  .due-date {
-    font-size: 0.65rem;
-    padding: 0.125rem 0.25rem;
+    font-size: 0.875rem;
   }
 
   .calendar-day {
-    min-height: 40px;
-    padding: 0.25rem 0.125rem;
-    font-size: 0.7rem;
+    min-height: 60px;
+    padding: 0.25rem;
   }
 
   .day-number {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 
   .meeting-indicator {
-    font-size: 0.6rem;
-    padding: 0.125rem 0.125rem;
-  }
-
-  .attend-btn {
-    font-size: 0.6rem;
+    font-size: 0.625rem;
     padding: 0.125rem 0.25rem;
   }
 
-  .day-header {
-    padding: 0.375rem 0.25rem;
-    font-size: 0.7rem;
+  .attend-btn {
+    font-size: 0.625rem;
+    padding: 0.125rem 0.375rem;
   }
 
   .btn-primary,
   .btn-secondary {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
-  }
-
-  .form-input {
-    padding: 0.5rem;
-    font-size: 16px;
-  }
-
-  /* Better mobile layout for upcoming meetings */
-  .meeting-item {
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .meeting-time {
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .meeting-title {
-    font-size: 0.75rem;
-  }
-
-  .meeting-date {
-    font-size: 0.65rem;
   }
 }
 
